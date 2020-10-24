@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,23 +15,24 @@ namespace WhatsappSpy
 {
     public partial class Form1 : Form
     {
-        IWebDriver driver = new ChromeDriver();
 
         public Form1()
         {
-           
+
 
             InitializeComponent();
           
         }
-
         public bool IsTestElementPresent(By element)
         {
+
+
+
             try
             {
                 driver.FindElement(element);
                 return true;
-                
+
             }
             catch (NoSuchElementException)
             {
@@ -42,8 +44,10 @@ namespace WhatsappSpy
 
         }
 
+        IWebDriver driver = new ChromeDriver();
+
         public async void button1_Click(object sender, EventArgs e)
-        {
+        {   
            
             await Task.Run(async () => {
                 if (string.IsNullOrEmpty(textBox1.Text))
@@ -52,6 +56,8 @@ namespace WhatsappSpy
                     return;
                 }
                 else {
+                   
+                    
                     driver.Navigate().GoToUrl("https://web.whatsapp.com/");
                     await Task.Delay(10000);
                     driver.Navigate().GoToUrl("https://api.whatsapp.com/send?phone="+textBox1);
@@ -67,6 +73,7 @@ namespace WhatsappSpy
             
            
             }
+       
         string durum = "";
         public void Kontrol()
         {
@@ -76,13 +83,13 @@ namespace WhatsappSpy
                 {
                     if (IsTestElementPresent(By.CssSelector("#main > header > div._33QME > div._2ruUq._3xjAz > span")))
                     {
-                        string cevrimici = driver.FindElement(By.CssSelector("main > header > div._33QME > div._2ruUq._3xjAz > span")).Text;
+                        string cevrimici = driver.FindElement(By.CssSelector("#main > header > div._33QME > div._2ruUq._3xjAz > span")).Text;
                         if (cevrimici == "çevrimiçi")
                         {
                             if (durum!="çevrimiçi")
                             {
                                 durum = "çevrimiçi";
-                                logList.Items.Add("Numara çevrimiçi =>" + textBox1 + "=>" + DateTime.Now);
+                                logList.Items.Add("Numara çevrimiçi =>" + DateTime.Now);
                             }
                         }
                     }
@@ -93,7 +100,7 @@ namespace WhatsappSpy
                     if (durum!="çevrimdışı")
                     {
                         durum = "çevrimdışı";
-                        logList.Items.Add("Numara çevrimdışı =>" + textBox1 + "=>" + DateTime.Now);
+                        logList.Items.Add("Numara çevrimdışı =>" + DateTime.Now);
 
                     }
                 }
@@ -106,7 +113,71 @@ namespace WhatsappSpy
             }
 
 
+        }
+        private void btnKaydet_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                string yol = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\WpCasus-durum.txt";
+                using (StreamWriter sw= new StreamWriter(yol))
+                {
+                    foreach (var item in logList.Items)
+                    {
+                        sw.WriteLine(item.ToString());
+
+                    }
+                    sw.Close();
+                    MessageBox.Show("Kaydedildi...");
+                }
+               
+
             }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        private void tmrKontrol_Tick(object sender, EventArgs e)
+        {
+            Kontrol();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            logList.Items.Clear();
+        }
+
+        private void btnKaydet_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                string yol = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\WpCasus-durum.txt";
+                using (StreamWriter sw = new StreamWriter(yol))
+                {
+                    foreach (var item in logList.Items)
+                    {
+                        sw.WriteLine(item.ToString());
+
+                    }
+                    sw.Close();
+                    MessageBox.Show("Kaydedildi...");
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+
         //#main > header > div._33QME > div._2ruUq._3xjAz
         //#main > header > div._33QME > div._2ruUq._3xjAz > span
     }

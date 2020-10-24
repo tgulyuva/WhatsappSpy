@@ -32,10 +32,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.logList = new System.Windows.Forms.ListBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnKaydet = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.tmrKontrol = new System.Windows.Forms.Timer(this.components);
             this.label2 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -65,14 +66,15 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
+            // btnKaydet
             // 
-            this.button2.Location = new System.Drawing.Point(278, 385);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(165, 36);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Kaydet";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnKaydet.Location = new System.Drawing.Point(278, 385);
+            this.btnKaydet.Name = "btnKaydet";
+            this.btnKaydet.Size = new System.Drawing.Size(165, 36);
+            this.btnKaydet.TabIndex = 4;
+            this.btnKaydet.Text = "Dışa Aktar";
+            this.btnKaydet.UseVisualStyleBackColor = true;
+            this.btnKaydet.Click += new System.EventHandler(this.btnKaydet_Click_1);
             // 
             // textBox1
             // 
@@ -84,6 +86,7 @@
             // tmrKontrol
             // 
             this.tmrKontrol.Interval = 500;
+            this.tmrKontrol.Tick += new System.EventHandler(this.tmrKontrol_Tick);
             // 
             // label2
             // 
@@ -96,14 +99,25 @@
             this.label2.TabIndex = 6;
             this.label2.Text = "Numarayı 90xxxxxxxxxx formatında giriniz.";
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(16, 385);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(167, 36);
+            this.button2.TabIndex = 7;
+            this.button2.Text = "Listeyi Temizle";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(470, 433);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnKaydet);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.logList);
             this.Controls.Add(this.label1);
@@ -119,10 +133,11 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListBox logList;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnKaydet;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Timer tmrKontrol;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button2;
     }
 }
 
