@@ -23,6 +23,14 @@ namespace WhatsappSpy
             InitializeComponent();
           
         }
+        IWebDriver driver;
+        public void CreateDriver()
+        {
+            ChromeDriverService service = ChromeDriverService.CreateDefaultService();
+            service.HideCommandPromptWindow = true;
+            driver = new ChromeDriver(service);
+        }
+
         public bool IsTestElementPresent(By element)
         {
 
@@ -42,13 +50,11 @@ namespace WhatsappSpy
 
 
 
-        }
-
-        IWebDriver driver;
+        }  
 
         public async void button1_Click(object sender, EventArgs e)
         {
-             driver= new ChromeDriver();
+            CreateDriver();
             await Task.Run(async () => {
                 if (string.IsNullOrEmpty(textBox1.Text))
                 {
