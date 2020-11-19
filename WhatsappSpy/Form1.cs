@@ -44,11 +44,11 @@ namespace WhatsappSpy
 
         }
 
-        IWebDriver driver = new ChromeDriver();
+        IWebDriver driver;
 
         public async void button1_Click(object sender, EventArgs e)
-        {   
-           
+        {
+             driver= new ChromeDriver();
             await Task.Run(async () => {
                 if (string.IsNullOrEmpty(textBox1.Text))
                 {
@@ -72,7 +72,7 @@ namespace WhatsappSpy
             tmrKontrol.Enabled = true;
             
            
-            }
+        }
        
         string durum = "";
         public void Kontrol()
@@ -178,8 +178,7 @@ namespace WhatsappSpy
         }
 
 
-        //#main > header > div._33QME > div._2ruUq._3xjAz
-        //#main > header > div._33QME > div._2ruUq._3xjAz > span
+        
     }
 }
 
