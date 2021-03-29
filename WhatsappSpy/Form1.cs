@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using OpenQA.Selenium.Firefox;
 
 namespace WhatsappSpy
 {
@@ -26,15 +26,13 @@ namespace WhatsappSpy
         IWebDriver driver;
         public void CreateDriver()
         {
-            ChromeDriverService service = ChromeDriverService.CreateDefaultService();
+            FirefoxDriverService service = FirefoxDriverService.CreateDefaultService();
             service.HideCommandPromptWindow = true;
-            driver = new ChromeDriver(service);
+            driver = new FirefoxDriver();
         }
 
         public bool IsTestElementPresent(By element)
         {
-
-
 
             try
             {
